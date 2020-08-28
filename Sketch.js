@@ -18,24 +18,35 @@ function init() {
 init();
 
 async function swap (ind1, ind2, shuffle = false) {
-	await Promise.all ([
-		bars[ind1].move (ind2, shuffle),
-		bars[ind2].move (ind1, shuffle)
-	]);
-	let c = bars[ind1].val;
-	bars[ind1].val = bars[ind2].val;
-	bars[ind2].val = c;
+	if (ind1 != ind2) {
+		if (!shuffle) {
+			await Promise.all ([
+				bars[ind1].move (ind2),
+				bars[ind2].move (ind1)
+			]);
+		} else {
+			bars[ind1].move (ind2, true);
+			bars[ind2].move (ind1, true);
+		}
+		let c = bars[ind1].val;
+		bars[ind1].val = bars[ind2].val;
+		bars[ind2].val = c;
 
-	c = bars[ind1].el;
-	bars[ind1].el = bars[ind2].el;
-	bars[ind2].el = c;
+		c = bars[ind1].el;
+		bars[ind1].el = bars[ind2].el;
+		bars[ind2].el = c;
+	}
+}
+async function insert (ind, value) {
+	if (bars[ind].val != value)
+		await bars[ind].insert (value);
 }
 
-async function shuffle () {
+function shuffle () {
 	let cp = speed;
 	speed = 0;
 	for (let i = 0; i < n; i++) {
-		await swap (i, Math.floor (Math.random() * n), true);
+		swap (i, Math.floor (Math.random() * n), true);
 	}
 	speed = cp;
 }

@@ -6,8 +6,6 @@ async function selection () {
 				min = j;
 			}
 		}
-		if (min != i) {
-			await swap (min, i);
-		}
+		await swap (min, i);
 	}
 }

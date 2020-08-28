@@ -7,8 +7,7 @@ async function selection () {
 			}
 		}
 		if (min != i) {
-			swap (min, i);
-			await new Promise (r => setTimeout (r, speed));
+			await swap (min, i);
 		}
 	}
 }

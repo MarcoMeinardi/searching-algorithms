@@ -2,7 +2,7 @@ var barsContainer;
 var bars;
 var n;
 
-var speed = 50;
+var speed = 30;
 
 function init() {
 	barsContainer = document.getElementById ("bars-container");

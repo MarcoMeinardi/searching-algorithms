@@ -1,4 +1,4 @@
-async function insertion() {
+async function insertion () {
 	for (let i = 1; i < n; i++) {
 		let val = bars[i].val;
 		let j = i - 1;

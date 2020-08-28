@@ -1,4 +1,4 @@
-function quick() {
+function quick () {
 	quickSort (0, n - 1);
 }
 

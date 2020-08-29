@@ -3,6 +3,7 @@ var bars;
 var n;
 
 var algorithm;
+var is_sorting;
 
 var speed = 30;
 
@@ -17,21 +18,24 @@ function init() {
 		bars.push (bar);
 		barsContainer.appendChild (bar.el);
 	}
+
+	is_sorting = false;
 }
 init();
 
 function shuffle () {
-	let cp = speed;
-	speed = 0;
-	for (let i = 0; i < n; i++) {
-		swap (i, Math.floor (Math.random() * n), true);
+	if (!is_sorting) {
+		for (let i = 0; i < n; i++) {
+			swap (i, Math.floor (Math.random() * n), true);
+		}
 	}
-	speed = cp;
 }
 
-function sort () {
-	if (algorithm.value != "none") {
-		eval (algorithm.value + "()");
+async function sort () {
+	if (!is_sorting && algorithm.value != "none") {
+		is_sorting = true;
+		await eval (algorithm.value + "()");
+		is_sorting = false;
 	}
 }
 

@@ -63,3 +63,14 @@ async function insert (ind, value) {
 	if (bars[ind].val != value)
 		await bars[ind].insert (value);
 }
+
+function reverse () {
+	barsContainer.innerHTML = "";
+	bars = [];
+
+	for (let i = 0; i < n; i++) {
+		let bar = new Bar (n - i, i);
+		bars.push (bar);
+		barsContainer.appendChild (bar.el);
+	}
+}

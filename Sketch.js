@@ -2,10 +2,13 @@ var barsContainer;
 var bars;
 var n;
 
+var algorithm;
+
 var speed = 30;
 
 function init() {
 	barsContainer = document.getElementById ("bars-container");
+	algorithm = document.getElementById ("algorithms");
 	bars = [];
 	n = 100;
 
@@ -16,6 +19,21 @@ function init() {
 	}
 }
 init();
+
+function shuffle () {
+	let cp = speed;
+	speed = 0;
+	for (let i = 0; i < n; i++) {
+		swap (i, Math.floor (Math.random() * n), true);
+	}
+	speed = cp;
+}
+
+function sort () {
+	if (algorithm.value != "none") {
+		eval (algorithm.value + "()");
+	}
+}
 
 async function swap (ind1, ind2, shuffle = false) {
 	if (ind1 != ind2) {
@@ -40,13 +58,4 @@ async function swap (ind1, ind2, shuffle = false) {
 async function insert (ind, value) {
 	if (bars[ind].val != value)
 		await bars[ind].insert (value);
-}
-
-function shuffle () {
-	let cp = speed;
-	speed = 0;
-	for (let i = 0; i < n; i++) {
-		swap (i, Math.floor (Math.random() * n), true);
-	}
-	speed = cp;
 }

@@ -9,7 +9,18 @@
 	</head>
 	<body>
 		<div id = "bars-container"></div>
-		<!-- <div id = buttons-container> -->
+		<div id = buttons-container>
+			<button id = "shuffle" onclick = "shuffle()">SHUFFLE</button>
+			<button id = "sort" onclick = "sort()">SORT</button>
+			<select name = "algorithms" id = "algorithms">
+				<option value = "none">- Select an algorithm -</option>
+				<option value = "bubble">Bubble sort</option>
+				<option value = "heap">Heap sort</option>
+				<option value = "insertion">Insertion sort</option>
+				<option value = "merge">Merge sort</option>
+				<option value = "selection">Selection sort</option>
+			</select>
+		</div>
 
 		<script src = "Algorithms/SelectionSort.js"></script>
 		<script src = "Algorithms/BubbleSort.js"></script>
